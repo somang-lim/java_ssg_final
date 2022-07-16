@@ -20,6 +20,20 @@ public class AppTest {
         assertTrue(rs.contains("명언 SSG가 종료되었습니다."));
     }
 
+    // 등록
+    @Test
+    void 등록을_하면_명언과_작가를_물어본다() {
+        String rs = AppTestRunner.run("""
+                등록
+                나의 죽음을 적들에게 알리지 마라
+                이순신
+                종료
+                """);
+
+        assertTrue(rs.contains("명언 : "));
+        assertTrue(rs.contains("작가 : "));
+    }
+
     // TEST
     @Test
     void 테스트() {

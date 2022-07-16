@@ -11,14 +11,20 @@ public class App {
     }
 
     public void run() {
+        System.out.println("== 명언 SSG ==");
 
         outer:
         while(true) {
-            System.out.println("== 명언 SSG ==");
             System.out.print("명령) ");
             String cmd = sc.nextLine().trim();
 
             switch(cmd) {
+                case "등록" :
+                    System.out.print("명언 : ");
+                    String content = sc.nextLine();
+                    System.out.print("작가 : ");
+                    String author = sc.nextLine();
+                    break;
                 case "종료" :
                     System.out.print("명언 SSG가 종료되었습니다.");
                     break outer;
