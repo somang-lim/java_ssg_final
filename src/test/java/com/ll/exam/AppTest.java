@@ -10,6 +10,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AppTest {
 
+    // 종료
+    @Test
+    void 프로그램_시작할_때_타이틀_출력_그리고_종료() {
+        String rs = AppTestRunner.run("종료");
+
+        assertTrue(rs.contains("== 명언 SSG =="));
+        assertTrue(rs.contains("명령) "));
+        assertTrue(rs.contains("명언 SSG가 종료되었습니다."));
+    }
+
+    // TEST
     @Test
     void 테스트() {
         assertTrue(1 == 1);
