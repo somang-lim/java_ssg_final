@@ -51,7 +51,16 @@ public class App {
                 case "삭제" :
                     id = rq.getIntParam("id", 0);
 
+                    if(id == 0) {
+                        System.out.print("번호를 입력해주세요.");
+                        continue;
+                    }
+
                     WiseSaying wiseSaying = findById(id);
+
+                    if(wiseSaying == null) {
+                        System.out.printf("%d번 명언이 존재하지 않습니다.", id);
+                    }
 
                     wiseSayings.remove(wiseSaying);
                     System.out.printf("%d번 명언이 삭제되었습니다.\n", id);

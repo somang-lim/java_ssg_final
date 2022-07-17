@@ -101,6 +101,28 @@ public class AppTest {
         assertFalse(rs.contains("1 / 이순신 / 나의 죽음을 적들에게 알리지 말라"));
     }
 
+    @Test
+    public void 삭제하고_싶은_명언이_존재하지_않을_때_예외처리를_한다() {
+        String rs = AppTestRunner.run("""
+                등록
+                나의 죽음을 적들에게 알리지 말라
+                이순신
+                등록
+                나에게 불가능이란 없다.
+                나폴레옹
+                삭제?id=2
+                목록
+                삭제?id=2
+                종료
+                """);
+
+        assertTrue(rs.contains("2번 명언이 삭제되었습니다."));
+        assertFalse(rs.contains("2 / 나폴레옹 / 나에게 불가능이란 없다."));
+        assertTrue(rs.contains("1 / 이순신 / 나의 죽음을 적들에게 알리지 말라"));
+        assertTrue(rs.contains("2번 명언이 존재하지 않습니다."));
+    }
+
+
     // TEST
     @Test
     void 테스트() {
