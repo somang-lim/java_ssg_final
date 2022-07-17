@@ -63,7 +63,18 @@ public class AppTest {
 
     // 목록
     @Test
-    public void 등록_후_목록에서_확인할_수_있어야_한다() {
+    void 목록만_먼저_출력했을_때_목록이_아닌_명언이_존재하지_않음을_보여진다() {
+        String rs = AppTestRunner.run("""
+                목록
+                종료
+                """);
+
+        assertTrue(rs.contains("명언이 등록되어 있지 않습니다."));
+        assertTrue(rs.contains("먼저 명언을 등록하세요."));
+    }
+
+    @Test
+    void 등록_후_목록에서_확인할_수_있어야_한다() {
         String rs = AppTestRunner.run("""
                 등록
                 나의 죽음을 적들에게 알리지 말라
@@ -83,7 +94,7 @@ public class AppTest {
 
     // 삭제
     @Test
-    public void 명언을_삭제할_수_있다() {
+    void 명언을_삭제할_수_있다() {
         String rs = AppTestRunner.run("""
                 등록
                 나의 죽음을 적들에게 알리지 말라
@@ -102,7 +113,7 @@ public class AppTest {
     }
 
     @Test
-    public void 삭제하고_싶은_명언이_존재하지_않을_때_예외처리를_한다() {
+    void 삭제하고_싶은_명언이_존재하지_않을_때_예외처리를_한다() {
         String rs = AppTestRunner.run("""
                 등록
                 나의 죽음을 적들에게 알리지 말라
