@@ -9,6 +9,7 @@ public class App {
     private Scanner sc;
     private int wiseSayingLastIndexId;
     private List<WiseSaying> wiseSayings;
+    private Rq rq;
 
     public App(Scanner sc) {
         this.sc = sc;
@@ -22,9 +23,9 @@ public class App {
         outer:
         while(true) {
             System.out.print("명령) ");
-            String cmd = sc.nextLine().trim();
+            rq = new Rq(sc.nextLine().trim());
 
-            switch(cmd) {
+            switch(rq.getPath()) {
                 case "등록" :
                     int id = ++wiseSayingLastIndexId;
 
@@ -47,11 +48,28 @@ public class App {
                         System.out.printf("%d / %s / %s\n", wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getContent());
                     }
                     break;
+                case "삭제" :
+                    id = rq.getIntParam("id", 0);
+
+                    WiseSaying wiseSaying = findById(id);
+
+                    wiseSayings.remove(wiseSaying);
+                    System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
+                    break;
                 case "종료" :
                     System.out.print("명언 SSG가 종료되었습니다.");
                     break outer;
             }
         }
+    }
+
+    private WiseSaying findById(int id) {
+        for(WiseSaying wiseSaying : wiseSayings) {
+            if(wiseSaying.getId() == id) {
+                return wiseSaying;
+            }
+        }
+        return null;
     }
 
 }
