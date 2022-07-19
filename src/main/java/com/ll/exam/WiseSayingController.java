@@ -50,14 +50,14 @@ public class WiseSayingController {
         int id = rq.getIntParam("id", 0);
 
         if(id == 0) {
-            System.out.print("번호를 입력하세요.");
+            System.out.print("번호를 입력하세요.\n");
             return;
         }
 
         WiseSaying wiseSaying = wiseSayingService.findById(id);
 
         if(wiseSaying == null) {
-            System.out.printf("%d번 명언이 존재하지 않습니다.", id);
+            System.out.printf("%d번 명언이 존재하지 않습니다.\n", id);
             return;
         }
 
@@ -78,14 +78,15 @@ public class WiseSayingController {
         int id = rq.getIntParam("id", 0);
 
         if (id == 0) {
-            System.out.print("번호를 입력해주세요.");
+            System.out.print("번호를 입력해주세요.\n");
             return;
         }
 
         WiseSaying wiseSaying = wiseSayingService.findById(id);
 
         if (wiseSaying == null) {
-            System.out.printf("%d번 명언이 존재하지 않습니다.", id);
+            System.out.printf("%d번 명언이 존재하지 않습니다.\n", id);
+            return;
         }
 
         wiseSayingService.remove(id);
